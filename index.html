@@ -58,6 +58,9 @@
                 }
             );
             var buttonId = embedded_svc.settings.buttonId;
+            var button = document.getElementById(buttonId); 
+            var buttonName = button.value;
+            console.log(buttonName);
         };
 
         
@@ -74,9 +77,7 @@
             } else {
                 initESW('https://service.force.com/');
             }
-            var button = document.getElementById(buttonId); 
-            var buttonName = button.value;
-            console.log(buttonName);
+           
         }
     </script>
 </body>
