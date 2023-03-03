@@ -41,7 +41,7 @@
 
             embedded_svc.settings.enabledFeatures = ['LiveAgent'];
             embedded_svc.settings.entryFeature = 'LiveAgent';
-
+            embedded_svc.setting.buttonId = 'buttonId';
             embedded_svc.init(
                 'https://dspl-dmsdemo-dev-ed.my.salesforce.com/',
                 'https://dspl-dmsdemo-dev-ed.my.salesforce-sites.com/liveAgentSetupFlow',
@@ -73,6 +73,9 @@
             } else {
                 initESW('https://service.force.com/');
             }
+            var button = document.getElementById(buttonId); 
+            var buttonName = button.value;
+            console.log(buttonName);
         }
     </script>
 </body>
