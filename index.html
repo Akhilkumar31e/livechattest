@@ -5,6 +5,8 @@
 
 <body>
     <h1>Welcome to Cleartrip live chat</h1>
+    <button id="chatButton" onclick="handleChatButton()">Click here to chat with live agent</button>
+    
     <style type='text/css'>
         .embeddedServiceHelpButton .helpButton .uiButton {
             background-color: #684C43;
@@ -57,15 +59,20 @@
             );
         };
 
-        if (!window.embedded_svc) {
+        
+    </script>
+    <script>
+        handleChatButton = () => {
+            if (!window.embedded_svc) {
             var s = document.createElement('script');
             s.setAttribute('src', 'https://dspl-dmsdemo-dev-ed.my.salesforce.com/embeddedservice/5.0/esw.min.js');
             s.onload = function () {
                 initESW(null);
             };
             document.body.appendChild(s);
-        } else {
-            initESW('https://service.force.com/');
+            } else {
+                initESW('https://service.force.com/');
+            }
         }
     </script>
 </body>
