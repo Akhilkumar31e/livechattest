@@ -42,7 +42,6 @@
             embedded_svc.settings.enabledFeatures = ['LiveAgent'];
             embedded_svc.settings.entryFeature = 'LiveAgent';
             var buttonId = embedded_svc.settings.buttonId;
-            var buttonId2= liveagent.settings.buttonId;
             embedded_svc.init(
                 'https://dspl-dmsdemo-dev-ed.my.salesforce.com/',
                 'https://dspl-dmsdemo-dev-ed.my.salesforce-sites.com/liveAgentSetupFlow',
@@ -77,9 +76,6 @@
             var button = document.getElementById(buttonId); 
             var buttonName = button.value;
             console.log(buttonName);
-            var button2 = document.getElementById(buttonId2); 
-            var buttonName2 = button2.value;
-            console.log(buttonName2);
         }
     </script>
 </body>
