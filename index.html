@@ -84,7 +84,8 @@
 
         function checkForStatusChange(selector) {
             return new Promise(resolve => {
-                if (document.querySelector(selector)) {
+                let targetElement = document.querySelector(selector);
+                if (targetElement && targetElement.innerText === "Contact Us") {
                     return resolve(document.querySelector(selector));
                 }
 
