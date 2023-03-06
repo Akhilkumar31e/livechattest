@@ -62,11 +62,33 @@
         
     </script>
     <script>
-            showOrHideChatButton = () => {
-                let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
-                if(buttonText === 'Contact Us') {
-                    document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
+        function waitForElm(selector) {
+            return new Promise(resolve => {
+                if (document.querySelector(selector)) {
+                    return resolve(document.querySelector(selector));
                 }
+
+                const observer = new MutationObserver(mutations => {
+                    if (document.querySelector(selector)) {
+                        resolve(document.querySelector(selector));
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+        }
+            showOrHideChatButton = () => {
+                waitForElm('.embeddedServiceHelpButton').then((elm) => {
+                    let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
+                    if(buttonText === 'Contact Us') {
+                        document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
+                    }
+                });
+                
             }
            handleChatButton = () => {
                 if (!window.embedded_svc) {
