@@ -105,7 +105,7 @@
         
             showOrHideChatButton = () => {
                 waitForElm('.embeddedServiceHelpButton').then((elm) => {
-                    checkForStatusChange('.embeddedServiceHelpButton#helpButtonSpan.message').then((elm) => {
+                    checkForStatusChange('.message').then((elm) => {
                         let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
                         if(buttonText === 'Contact Us') {
                             document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
