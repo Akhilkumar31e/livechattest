@@ -81,18 +81,32 @@
                 });
             });
         }
+
+        function checkForStatusChange(selector) {
+            return new Promise(resolve => {
+                if (document.querySelector(selector)) {
+                    return resolve(document.querySelector(selector));
+                }
+
+                const observer = new MutationObserver(mutations => {
+                    let targetElement = document.querySelector(selector);
+                    if (targetElement && targetElement.innerText === "Contact Us") {
+                        resolve(document.querySelector(selector));
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+        }
         
             showOrHideChatButton = () => {
                 waitForElm('.embeddedServiceHelpButton').then((elm) => {
-                    let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
-                    if(buttonText === 'Contact Us') {
-                        document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
-                        var contactMessage = document.createElement('p');
-                        contactMessage.innerText = 'Contact us on 9000000000';
-                        document.body.appendChild(contactMessage);
-                    }
-                    document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].addEventListener("DOMCharacterDataModified", function (event) {
-                        let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText; 
+                    checkForStatusChange('.embeddedServiceHelpButton#helpButtonSpan.message').then((elm) => {
+                        let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
                         if(buttonText === 'Contact Us') {
                             document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
                             var contactMessage = document.createElement('p');
