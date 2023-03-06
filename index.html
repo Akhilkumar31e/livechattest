@@ -91,7 +91,8 @@
                         contactMessage.innerText = 'Contact us on 9000000000';
                         document.body.appendChild(contactMessage);
                     }
-                    document.getElementsByClassName("embeddedServiceHelpButton")[0].addEventListener("DOMCharacterDataModified", function (event) { 
+                    document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].addEventListener("DOMCharacterDataModified", function (event) {
+                        let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText; 
                         if(buttonText === 'Contact Us') {
                             document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
                             var contactMessage = document.createElement('p');
