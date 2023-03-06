@@ -84,7 +84,7 @@
             showOrHideChatButton = () => {
                 waitForElm('.embeddedServiceHelpButton').then((elm) => {
                     let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
-                    if(buttonText === 'Contact Us') {
+                    if(buttonText === 'Chat with an Expert') {
                         document.getElementsByClassName("embeddedServiceHelpButton")[0].style = {display: none};
                     }
                 });
