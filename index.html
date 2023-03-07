@@ -118,10 +118,14 @@
                             var contactMessage = document.createElement('p');
                             contactMessage.innerText = 'Currently there are no live agents. Contact us on 9000000000';
                             document.body.appendChild(contactMessage);
+                            loading.remove();
                         } else {
                             document.getElementById("helpButtonSpan").click();
+                            waitForElm('.dockableContainer').then((elm) => {
+                                loading.remove();
+                            });
                         }
-                        loading.remove();
+                        
                     }, 5000)
                 });
                 
