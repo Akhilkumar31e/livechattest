@@ -8,6 +8,9 @@
     <button id="chatButton" onclick="handleChatButton()">Click here to chat with live agent</button>
     
     <style type='text/css'>
+        .embeddedServiceHelpButton {
+            display: none;
+        }
         .embeddedServiceHelpButton .helpButton .uiButton {
             background-color: #684C43;
             font-family: "Arial", sans-serif;
@@ -105,16 +108,21 @@
         }
         
             showOrHideChatButton = () => {
+                var loading = document.createElement('p');
+                loading.innerText = 'Please wait while we check for the agent availability status';
+                document.body.appendChild(loading);
                 waitForElm('.embeddedServiceHelpButton').then((elm) => {
-                    checkForStatusChange('.message').then((elm) => {
+                    setTimeout(function () {
                         let buttonText = document.getElementById("helpButtonSpan").getElementsByClassName("message")[0].innerText;
                         if(buttonText === 'Contact Us') {
-//                             document.getElementsByClassName("embeddedServiceHelpButton")[0].style.display = 'none';
                             var contactMessage = document.createElement('p');
-                            contactMessage.innerText = 'Contact us on 9000000000';
+                            contactMessage.innerText = 'Currently there are no live agents. Contact us on 9000000000';
                             document.body.appendChild(contactMessage);
+                        } else {
+                            document.getElementById("helpButtonSpan").click();
                         }
-                    });
+                        loading.remove();
+                    }, 5000)
                 });
                 
             }
